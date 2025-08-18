@@ -31,7 +31,7 @@ public class DetailedUsage {
     private Usage usage;
 
     @Column(name = "data_usage")
-    private Float dataUsage;
+    private double dataUsage;
 
     @Column(name = "minute_usage")
     private int minuteUsage;
@@ -40,7 +40,7 @@ public class DetailedUsage {
     private int smsUsage;
 
     @Column(name = "roaming_data_usage")
-    private Float roamingDataUsage;
+    private double roamingDataUsage;
 
     @Column(name = "usage_date_time")
     private LocalDateTime usageDateTime;

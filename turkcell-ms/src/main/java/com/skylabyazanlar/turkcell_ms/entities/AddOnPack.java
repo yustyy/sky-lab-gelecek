@@ -26,7 +26,7 @@ public class AddOnPack {
     private String name;
 
     @Column(name = "extra_data")
-    private Float extraData;
+    private double extraData;
 
     @Column(name = "extra_minute")
     private int extraMinute;
@@ -35,9 +35,9 @@ public class AddOnPack {
     private int extraSms;
 
     @Column(name = "price")
-    private Float price;
+    private double price;
 
     @Column(name = "roaming_data")
-    private Float roamingData;
+    private double roamingData;
 
 }

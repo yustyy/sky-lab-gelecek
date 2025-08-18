@@ -29,7 +29,7 @@ public class Usage {
     private User user;
 
     @Column(name = "data_usage")
-    private Float dataUsage;
+    private double dataUsage;
 
     @Column(name = "minute_usage")
     private int minuteUsage;
@@ -38,7 +38,7 @@ public class Usage {
     private int smsUsage;
 
     @Column(name = "roaming_data_usage")
-    private Float roamingDataUsage;
+    private double roamingDataUsage;
 
     @OneToMany(mappedBy = "usage")
     private List<DetailedUsage> detailedUsages;

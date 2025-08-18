@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -37,8 +38,18 @@ public class User {
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "current_plan_id", referencedColumnName = "id")
+    private Plan currentPlan;
+
     @Enumerated(EnumType.STRING)
     private PlanType type;
+
+    @OneToMany(mappedBy = "user")
+    private List<Usage> usages;
+
+    @OneToMany(mappedBy = "user")
+    private List<DetailedUsage> detailedUsages;
 
 
 

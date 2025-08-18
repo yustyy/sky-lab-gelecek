@@ -20,18 +20,18 @@ public class PlanDto {
 
     private PlanType type;
 
-    private Float monthlyPrice;
+    private double monthlyPrice;
 
-    private Float quotaData;
+    private double quotaData;
 
     private int quotaMinute;
 
     private int quotaSms;
 
-    private Float overageData;
+    private double overageData;
 
-    private Float overageMinute;
+    private double overageMinute;
 
-    private Float overageSms;
+    private double overageSms;
 
 }

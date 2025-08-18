@@ -25,4 +25,9 @@ public class UserManager implements UserService {
         return userDao.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(UserMessages.USER_NOT_FOUND));
     }
+
+    @Override
+    public User saveUser(User user) {
+        return userDao.save(user);
+    }
 }

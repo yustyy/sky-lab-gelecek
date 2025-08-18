@@ -5,6 +5,7 @@ import com.skylabyazanlar.turkcell_ms.business.abstracts.UsageService;
 import com.skylabyazanlar.turkcell_ms.core.dtos.usage.response.UsageDto;
 import com.skylabyazanlar.turkcell_ms.dataAccess.UsageDao;
 import com.skylabyazanlar.turkcell_ms.entities.DetailedUsage;
+import com.skylabyazanlar.turkcell_ms.entities.Usage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -67,5 +68,10 @@ public class UsageManager implements UsageService {
                 .collect(Collectors.toList());
 
 
+    }
+
+    @Override
+    public Usage save(Usage usage) {
+            return usageDao.save(usage);
     }
 }

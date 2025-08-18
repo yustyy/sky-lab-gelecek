@@ -10,4 +10,5 @@ public interface UsageService {
 
     List<UsageDto> getUsagesByUserIdAndDays(UUID userId, int days);
 
+    Usage save(Usage usage);
 }

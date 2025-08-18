@@ -30,10 +30,10 @@ public class Plan {
     private PlanType type;
 
     @Column(name = "monthly_price")
-    private Float monthlyPrice;
+    private double monthlyPrice;
 
     @Column(name = "quota_data")
-    private Float quotaData;
+    private double quotaData;
 
     @Column(name = "quota_minute")
     private int quotaMinute;
@@ -42,13 +42,13 @@ public class Plan {
     private int quotaSms;
 
     @Column(name = "overage_data")
-    private Float overageData;
+    private double overageData;
 
     @Column(name = "overage_minute")
-    private Float overageMinute;
+    private double overageMinute;
 
     @Column(name = "overage_sms")
-    private Float overageSms;
+    private double overageSms;
 
 
 }
