@@ -1,7 +1,7 @@
 package com.skylabyazanlar.turkcell_ms.business.concretes;
 
 import com.skylabyazanlar.turkcell_ms.business.abstracts.UserService;
-import com.skylabyazanlar.turkcell_ms.core.concretes.UserMessages;
+import com.skylabyazanlar.turkcell_ms.core.constants.UserMessages;
 import com.skylabyazanlar.turkcell_ms.core.utilities.exceptions.UserNotFoundException;
 import com.skylabyazanlar.turkcell_ms.dataAccess.UserDao;
 import com.skylabyazanlar.turkcell_ms.entities.User;

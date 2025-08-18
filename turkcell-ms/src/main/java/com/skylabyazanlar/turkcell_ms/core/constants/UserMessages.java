@@ -1,6 +1,4 @@
-package com.skylabyazanlar.turkcell_ms.core.concretes;
-
-import org.springframework.http.HttpStatus;
+package com.skylabyazanlar.turkcell_ms.core.constants;
 
 public class UserMessages {
     public static final String USER_GET_SUCCESS = "Kullanıcı başarıyla getirildi!";

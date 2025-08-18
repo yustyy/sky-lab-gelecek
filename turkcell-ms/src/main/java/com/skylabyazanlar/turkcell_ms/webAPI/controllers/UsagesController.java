@@ -1,7 +1,7 @@
 package com.skylabyazanlar.turkcell_ms.webAPI.controllers;
 
 import com.skylabyazanlar.turkcell_ms.business.abstracts.UsageService;
-import com.skylabyazanlar.turkcell_ms.core.concretes.UsageMessages;
+import com.skylabyazanlar.turkcell_ms.core.constants.UsageMessages;
 import com.skylabyazanlar.turkcell_ms.core.dtos.usage.response.UsageDto;
 import com.skylabyazanlar.turkcell_ms.core.utilities.results.SuccessDataResult;
 import jakarta.servlet.http.HttpServletRequest;
