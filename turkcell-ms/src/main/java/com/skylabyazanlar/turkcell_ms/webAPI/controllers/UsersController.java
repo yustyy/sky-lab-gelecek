@@ -10,10 +10,7 @@ import com.skylabyazanlar.turkcell_ms.entities.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -31,7 +28,7 @@ public class UsersController {
 
 
     @GetMapping("/{userId}")
-    public ResponseEntity<DataResult<UserDto>> getUserById(@RequestParam("userId") UUID userId, HttpServletRequest request){
+    public ResponseEntity<DataResult<UserDto>> getUserById(@PathVariable("userId") UUID userId, HttpServletRequest request){
         User user = userService.getUserById(userId);
         UserDto userDto = userMapper.toUserDto(user);
 

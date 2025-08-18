@@ -22,6 +22,10 @@ public class DetailedUsage {
     @Column(name = "id")
     private UUID id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "usage_id", nullable = false)
     private Usage usage;
@@ -34,6 +38,9 @@ public class DetailedUsage {
 
     @Column(name = "sms_usage")
     private int smsUsage;
+
+    @Column(name = "roaming_data_usage")
+    private Float roamingDataUsage;
 
     @Column(name = "usage_date_time")
     private LocalDateTime usageDateTime;
