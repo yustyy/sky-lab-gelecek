@@ -36,19 +36,19 @@ public class Plan {
     private Float quotaData;
 
     @Column(name = "quota_minute")
-    private Float quotaMinute;
+    private int quotaMinute;
 
     @Column(name = "quota_sms")
-    private Float quotaSms;
+    private int quotaSms;
 
     @Column(name = "overage_data")
     private Float overageData;
 
     @Column(name = "overage_minute")
-    private int overageMinute;
+    private Float overageMinute;
 
     @Column(name = "overage_sms")
-    private int overageSms;
+    private Float overageSms;
 
 
 }

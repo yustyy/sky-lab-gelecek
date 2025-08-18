@@ -37,6 +37,9 @@ public class Usage {
     @Column(name = "sms_usage")
     private int smsUsage;
 
+    @Column(name = "roaming_data_usage")
+    private Float roamingDataUsage;
+
     @OneToMany(mappedBy = "usage")
     private List<DetailedUsage> detailedUsages;
 

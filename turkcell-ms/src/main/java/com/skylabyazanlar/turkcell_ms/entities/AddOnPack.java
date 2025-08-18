@@ -37,4 +37,7 @@ public class AddOnPack {
     @Column(name = "price")
     private Float price;
 
+    @Column(name = "roaming_data")
+    private Float roamingData;
+
 }
