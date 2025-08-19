@@ -12,13 +12,13 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
 
-                .route("turkcell-ms", r -> r.path("/api/**")
-                        .filters(f -> f.rewritePath("/api/users/(?<segment>.*)", "/users/${segment}"))
-                        .uri("lb://turkcell-service"))
-
                 .route("alert-ms", r -> r.path("/api/alerts/**")
-                        .filters(f -> f.rewritePath("/api/events/(?<segment>.*)", "/events/${segment}"))
-                        .uri("lb://alerts-service"))
+                        .filters(f -> f.stripPrefix(1))
+                        .uri("lb://alert-service"))
+
+                .route("turkcell-ms", r -> r.path("/api/**")
+                        .filters(f -> f.stripPrefix(1))
+                        .uri("lb://turkcell-service"))
 
                 .build();
     }

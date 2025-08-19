@@ -25,13 +25,8 @@ services:
   turkcell-service:
     build: ./turkcell-ms
     container_name: turkcell-service
-    depends_on:
-      turkcell-service-db:
-        condition: service_healthy
-      eureka-server:
-        condition: service_started
     ports:
-      - "8082:8082"
+      - "8082:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://turkcell-service-db:5432/turkcellDB
@@ -54,12 +49,34 @@ services:
       - turkcell-data:/var/lib/postgresql/data
     networks:
       - nginx-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d userdb"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
+
+
+  alert-service:
+    build: ./alert-ms
+    container_name: alert-service
+    ports:
+      - "8083:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://alert-service-db:5432/alertDB
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+    networks:
+      - nginx-network
+
+  alert-service-db:
+    image: postgres:16
+    container_name: alert-service-db
+    environment:
+      POSTGRES_DB: alertDB
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5434:5432"
+    volumes:
+      - alert-data:/var/lib/postgresql/data
+    networks:
+      - nginx-network
 
   rabbitmq:
     image: rabbitmq:3-management
