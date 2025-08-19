@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    build: ./eureka-ms
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - nginx-network
+
+  gateway-service:
+    build: ./gateway-ms
+    container_name: gateway-service
+    depends_on:
+      eureka-server:
+        condition: service_started
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - nginx-network
+
+  turkcell-service:
+    build: ./turkcell-ms
+    container_name: turkcell-service
+    depends_on:
+      turkcell-service-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://turkcell-service-db:5432/turkcellDB
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - KEYCLOAK_URL=http://keycloak:8080
+    networks:
+      - nginx-network
+
+  turkcell-service-db:
+    image: postgres:16
+    container_name: turkcell-service-db
+    environment:
+      POSTGRES_DB: turkcellDB
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - turkcell-data:/var/lib/postgresql/data
+    networks:
+      - nginx-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d userdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - nginx-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  turkcell-data:
+  alert-data:
+
+networks:
+  nginx-network:
+    driver: bridge

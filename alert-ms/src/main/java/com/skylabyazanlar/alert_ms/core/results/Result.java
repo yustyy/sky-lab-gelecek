@@ -1,6 +1,5 @@
-package com.skylabyazanlar.turkcell_ms.core.utilities.results;
+package com.skylabyazanlar.alert_ms.core.results;
 
-import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
